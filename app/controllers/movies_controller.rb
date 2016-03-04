@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-        @allRatingType = Movie.all_ratings
+        @allRatings = Movie.all_ratings
 
         if(params[:sort] != nil and params[:sort] != session[:sort])
           session[:sort] = params[:sort]
@@ -30,29 +30,29 @@ class MoviesController < ApplicationController
 
 
         if(session[:ratings] != nil)
-          @sel_ratings =session[:ratings].keys
+          @selected_ratings =session[:ratings].keys
         else
-          @sel_ratings =Movie.all_ratings
+          @selected_ratings =Movie.all_ratings
         end
 
         if(session[:sort]=='title')
           if (session[:ratings] )
-            @movies = Movie.where("rating in (?)", @sel_ratings).order('title')
+            @movies = Movie.where("rating in (?)", @selected_ratings).order('title')
           else
             @movies = Movie.all.order('title')
-            end
+          end
         elsif(session[:sort]=='release_date')
           if (session[:ratings])
-            @movies = Movie.where("rating in (?)", @sel_ratings).order('release_date')
-             else
+            @movies = Movie.where("rating in (?)", @selected_ratings).order('release_date')
+          else
             @movies = Movie.all.order('release_date')
           end
         else
           if (session[:ratings] )
-            @movies = Movie.where("rating in (?)", @sel_ratings)
-            else
+            @movies = Movie.where("rating in (?)", @selected_ratings)
+          else
           @movies = Movie.all
-            end
+          end
         end
         @title_header = params[:sort]=='title' ?'high-light':nil
         @release_date_header = params[:sort]=='release_date' ?'high-light':nil
