@@ -54,8 +54,8 @@ class MoviesController < ApplicationController
           @movies = Movie.all
             end
         end
-        @title_header = params[:sort]=='title' ?'hilite':nil
-        @release_date_header = params[:sort]=='release_date' ?'hilite':nil
+        @title_header = params[:sort]=='title' ?'high-light':nil
+        @release_date_header = params[:sort]=='release_date' ?'high-light':nil
   end
   def new
     # default: render 'new' template

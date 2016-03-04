@@ -6,7 +6,7 @@
   - @allRatingType.each do |rating|
     = rating
     = check_box_tag "ratings[#{rating}]", 1, ("checked" if @sel_ratings.include?(rating))
-  = submit_tag 'Refresh', :id => 'ratings_submit'
+  = submit_tag 'Submit', :id => 'ratings_submit'
 
 %table#movies
   %thead
